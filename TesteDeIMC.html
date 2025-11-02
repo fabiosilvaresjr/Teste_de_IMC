@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TesteDeIMC</title>
+
+        <style>
+            
+            
+            h1 {
+                color: rgb(65, 65, 65); /* Corrigido o ponto e vírgula aqui */
+                text-align: center;
+            }  
+    
+
+            #calculadora-box {
+                background-color: lightblue;
+                width: 450px;
+                margin: auto;
+                text-align: center;
+                border-radius: 10px;
+                padding: 10px;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 20px;           
+            }
+
+            #resultado {
+                background-color: lightgreen;
+                width: 450px;
+                margin: auto;
+                text-align: center;
+                border-radius: 10px;
+                padding: 10px;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 20px;   
+                margin-top: 15px;        
+            }
+        </style>
+
+    </head>
+    <body>
+        
+         <h1>Cálculo de IMC:</h1>
+        <div id="calculadora-box"> 
+        
+           
+        Peso: <input type="number" name="caixa1" id="cx1" placeholder="Digite um número">Kg
+        <p> + </p>
+        Altura: <input type="number" name="caixa2" id="cx2" placeholder="Digite outro número">m
+        <br> <input type="button" value="Calcular" onclick = "somar()">
+
+        </div>
+        <div id="resultado"> </div>
+        
+        
+        <script>
+            function somar() {
+                var n1 = Number(window.document.getElementById("cx1").value);
+                var n2 = Number(window.document.getElementById("cx2").value);
+                var s = n1/ (n2 * n2)
+                var soma = s.toFixed(2)
+                //document.write(`A soma de ${n1} + ${n2} é igual a ${soma}`)
+                var res = window.document.getElementById("resultado");
+                if (n1 === 0 && n2 === 0  || isNaN(n1) || isNaN(n2)) {
+                    res.innerHTML = `Por favor, insira dois números válidos ou diferentes de ZERO!`;
+                }
+                else if (n1 && n2 < 0) {
+                   res.innerHTML = `ERRO, insira valores de peso e altura corretos!`; 
+                }
+                else {
+                res.innerHTML = `O IMC de ${n1}Kg e ${n2}m é de ${soma} Kg/m²`;
+                }
+
+                if (soma < 18.5) {
+                    res.innerHTML += `<br>Classificação: Abaixo do peso.`;
+                }
+                else if (soma >= 18.5 && soma <= 24.9) {
+                    res.innerHTML += `<br>Classificação: Peso normal.`;
+                }
+                else if (soma >= 25 && soma <= 29.9) {
+                    res.innerHTML += `<br>Classificação: Sobrepeso.`;
+                }
+                else if (soma >= 30 && soma <= 34.9) {
+                    res.innerHTML += `<br>Classificação: Obesidade grau I.`;
+                }
+                else if (soma >= 35 && soma <= 39.9) {
+                    res.innerHTML += `<br>Classificação: Obesidade grau II.`;
+                }
+                else {
+                    res.innerHTML += `<br>Classificação: Obesidade grau III ou mórbida.`;
+                }
+
+            }
+
+        </script>
+        
+
+
+
+    </body>
+</html>
